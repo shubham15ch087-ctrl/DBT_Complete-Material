@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: "What this model represents"
+    columns:
+      - name: customer_id
+        description: "Primary key of table"
+        tests:
+          - not_null
+          - unique
