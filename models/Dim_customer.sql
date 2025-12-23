@@ -1,16 +1,6 @@
 {{ config(materialized='table') }}
 
-with customers as (
-
-    select
-        id as customer_id,
-        first_name,
-        last_name
-    from raw.jaffle_shop.customers
-
-),
-
-orders as (
+with orders as (
 
     select
         id as order_id,
@@ -42,10 +32,10 @@ final as (
         co.first_order_date,
         co.most_recent_order_date,
         coalesce(co.number_of_orders, 0) as number_of_orders
-    from customers c
+    from {{ ref('stg_customer') }} c
     left join customer_orders co
         on c.customer_id = co.customer_id
 
 )
 
-select * from final;
+select * from final
