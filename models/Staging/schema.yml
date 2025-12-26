@@ -1,5 +1,11 @@
 version: 2
-
+sources:
+  - name: Jaffle_shop
+    database: raw
+    schema: Jaffle_shop
+    tables:
+      - name: customers
+      - name: orders
 models:
   - name: stg_customer
     description: "What this model represents"
